@@ -1,0 +1,17 @@
+build:
+  dependencies:
+    before:
+    - sudo apt-get -y install cmake;
+    - git clone https://github.com/manageiq/manageiq.git spec/manageiq;
+  tests:
+    override:
+      -
+        command: "true"
+  nodes:
+    analysis:
+      tests:
+        override:
+          -
+            command: rubocop-run
+            use_website_config: false
+          - js-scrutinizer-run
